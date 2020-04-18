@@ -17,7 +17,7 @@ import de.amr.graph.pathfinder.api.Path;
  * 
  * @author Armin Reichert
  */
-public class BidiGraphSearch<F extends AbstractGraphSearch<?, ?>, B extends AbstractGraphSearch<?, ?>>
+public class BidiGraphSearch<F extends AbstractGraphSearch<?>, B extends AbstractGraphSearch<?>>
 		implements ObservableGraphSearch {
 
 	private final F forwardSearch;

@@ -8,7 +8,6 @@ import java.util.function.ToDoubleBiFunction;
 
 import de.amr.graph.core.api.Graph;
 import de.amr.graph.pathfinder.api.Path;
-import de.amr.graph.pathfinder.impl.AStarSearch.AStarSearchInfo;
 import de.amr.graph.pathfinder.impl.queue.MinPQ_VertexQueue;
 
 /**
@@ -35,7 +34,7 @@ import de.amr.graph.pathfinder.impl.queue.MinPQ_VertexQueue;
  *      "https://www.redblobgames.com/pathfinding/a-star/introduction.html">Amit
  *      Patel, Red Blob Games</a>
  */
-public class AStarSearch extends AbstractGraphSearch<MinPQ_VertexQueue, AStarSearchInfo> {
+public class AStarSearch extends AbstractGraphSearch<MinPQ_VertexQueue> {
 
 	static class AStarSearchInfo extends BasicSearchInfo {
 		public double score;
@@ -47,7 +46,7 @@ public class AStarSearch extends AbstractGraphSearch<MinPQ_VertexQueue, AStarSea
 	}
 
 	@Override
-	protected AStarSearchInfo createVertexInfo(int v) {
+	protected BasicSearchInfo createVertexInfo(int v) {
 		return new AStarSearchInfo();
 	}
 
@@ -115,7 +114,10 @@ public class AStarSearch extends AbstractGraphSearch<MinPQ_VertexQueue, AStarSea
 	 * @return the score ("f"-value) of the vertex
 	 */
 	public double getScore(int v) {
-		return vertexInfo.containsKey(v) ? vertexInfo.get(v).score : Path.INFINITE_COST;
+		if (!vertexInfo.containsKey(v)) {
+			return Path.INFINITE_COST;
+		}
+		return ((AStarSearchInfo) vertexInfo.get(v)).score;
 	}
 
 	/**
@@ -125,6 +127,6 @@ public class AStarSearch extends AbstractGraphSearch<MinPQ_VertexQueue, AStarSea
 	 * @param score score for this vertex
 	 */
 	public void setScore(int v, double score) {
-		getOrCreateVertexInfo(v).score = score;
+		((AStarSearchInfo) getOrCreateVertexInfo(v)).score = score;
 	}
 }

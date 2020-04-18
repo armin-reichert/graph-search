@@ -28,25 +28,22 @@ import de.amr.graph.pathfinder.api.VertexQueue;
  * supports registration of observers for vertex and edge traversals and for
  * changes of the search queue (frontier).
  * 
- * @param <Q>           type of search queue (FIFO, LIFO, priority queue)
- * @param <VERTEX_INFO> type of search info stored for each vertex
+ * @param <Q> type of search queue (FIFO, LIFO, priority queue)
  * 
  * @author Armin Reichert
  */
-public abstract class AbstractGraphSearch<Q extends VertexQueue, VERTEX_INFO extends BasicSearchInfo>
-		implements ObservableGraphSearch {
+public abstract class AbstractGraphSearch<Q extends VertexQueue> implements ObservableGraphSearch {
 
 	protected final Graph<?, ?> graph;
-	protected final Map<Integer, VERTEX_INFO> vertexInfo;
+	protected final Map<Integer, BasicSearchInfo> vertexInfo;
 	protected final Set<GraphSearchObserver> observers;
 	protected final ToDoubleBiFunction<Integer, Integer> fnEdgeCost;
 	protected double maxCost;
 	protected Q frontier;
 	protected int current, source, target;
 
-	@SuppressWarnings("unchecked")
-	protected VERTEX_INFO createVertexInfo(int v) {
-		return (VERTEX_INFO) new BasicSearchInfo();
+	protected BasicSearchInfo createVertexInfo(int v) {
+		return new BasicSearchInfo();
 	}
 
 	protected AbstractGraphSearch(Graph<?, ?> graph) {
@@ -140,8 +137,8 @@ public abstract class AbstractGraphSearch<Q extends VertexQueue, VERTEX_INFO ext
 		return frontier.peek();
 	}
 
-	protected VERTEX_INFO getOrCreateVertexInfo(int v) {
-		VERTEX_INFO info = vertexInfo.get(v);
+	protected BasicSearchInfo getOrCreateVertexInfo(int v) {
+		BasicSearchInfo info = vertexInfo.get(v);
 		if (info == null) {
 			info = createVertexInfo(v);
 			info.parent = Graph.NO_VERTEX;

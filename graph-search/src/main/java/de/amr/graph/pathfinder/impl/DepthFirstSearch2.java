@@ -16,7 +16,7 @@ import de.amr.graph.pathfinder.impl.queue.LIFO_VertexQueue;
  * 
  * @author Armin Reichert
  */
-public class DepthFirstSearch2 extends AbstractGraphSearch<LIFO_VertexQueue, BasicSearchInfo> {
+public class DepthFirstSearch2 extends AbstractGraphSearch<LIFO_VertexQueue> {
 
 	public DepthFirstSearch2(Graph<?, ?> graph) {
 		super(graph, new LIFO_VertexQueue());

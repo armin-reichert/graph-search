@@ -4,7 +4,7 @@
   <groupId>de.amr.graph</groupId>
   <version>0.0.1-SNAPSHOT</version>
   <description>Graph search algorithms</description>
-  <name>Graph Search Algorithms</name>
+  <name>graph-search</name>
   <dependencies>
   	<dependency>
   		<groupId>de.amr.graph</groupId>

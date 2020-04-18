@@ -112,11 +112,11 @@ public abstract class AbstractGraphSearch<Q extends VertexQueue, VERTEX_INFO ext
 	 * @param v vertex to be expanded
 	 */
 	protected void expand(int v) {
-		graph.adj(v).filter(neighbor -> getState(neighbor) == UNVISITED).forEach(neighbor -> {
-			setState(neighbor, VISITED);
-			setParent(neighbor, v);
-			frontier.add(neighbor);
-			fireVertexAddedToFrontier(neighbor);
+		graph.adj(v).filter(child -> getState(child) == UNVISITED).forEach(child -> {
+			setState(child, VISITED);
+			setParent(child, v);
+			frontier.add(child);
+			fireVertexAddedToFrontier(child);
 		});
 	}
 

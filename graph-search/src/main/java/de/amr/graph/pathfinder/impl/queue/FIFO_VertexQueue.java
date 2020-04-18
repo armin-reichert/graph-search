@@ -2,7 +2,6 @@ package de.amr.graph.pathfinder.impl.queue;
 
 import java.util.ArrayDeque;
 import java.util.OptionalInt;
-import java.util.Queue;
 
 import de.amr.graph.pathfinder.api.VertexQueue;
 
@@ -13,7 +12,7 @@ import de.amr.graph.pathfinder.api.VertexQueue;
  */
 public class FIFO_VertexQueue implements VertexQueue {
 
-	private final Queue<Integer> q = new ArrayDeque<>();
+	private final ArrayDeque<Integer> q = new ArrayDeque<>();
 
 	@Override
 	public void add(int v) {

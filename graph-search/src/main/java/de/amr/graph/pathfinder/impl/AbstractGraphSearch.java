@@ -50,20 +50,11 @@ public abstract class AbstractGraphSearch<Q extends VertexQueue> implements Obse
 		this(graph, (u, v) -> 1);
 	}
 
-	protected AbstractGraphSearch(Graph<?, ?> graph, Q frontier) {
-		this(graph, (u, v) -> 1, frontier);
-	}
-
 	protected AbstractGraphSearch(Graph<?, ?> graph, ToDoubleBiFunction<Integer, Integer> fnEdgeCost) {
-		this(graph, fnEdgeCost, null);
-	}
-
-	protected AbstractGraphSearch(Graph<?, ?> graph, ToDoubleBiFunction<Integer, Integer> fnEdgeCost, Q frontier) {
 		this.graph = Objects.requireNonNull(graph);
 		this.vertexInfo = new HashMap<>();
 		this.observers = new HashSet<>(5);
 		this.fnEdgeCost = fnEdgeCost;
-		this.frontier = frontier;
 	}
 
 	protected void clear() {

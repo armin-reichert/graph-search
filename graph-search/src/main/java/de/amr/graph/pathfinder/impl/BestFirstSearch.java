@@ -42,8 +42,9 @@ public class BestFirstSearch extends AbstractGraphSearch<MinPQ_VertexQueue> {
 	 */
 	public BestFirstSearch(Graph<?, ?> graph, ToDoubleFunction<Integer> fnEstimatedCost,
 			ToDoubleBiFunction<Integer, Integer> fnEdgeCost) {
-		super(graph, fnEdgeCost, new MinPQ_VertexQueue(fnEstimatedCost));
+		super(graph, fnEdgeCost);
 		this.fnEstimatedCost = fnEstimatedCost;
+		frontier = new MinPQ_VertexQueue(fnEstimatedCost);
 	}
 
 	/**

@@ -17,6 +17,7 @@ public class BreadthFirstSearch extends AbstractGraphSearch<FIFO_VertexQueue> {
 	}
 
 	public BreadthFirstSearch(Graph<?, ?> graph, ToDoubleBiFunction<Integer, Integer> fnEdgeCost) {
-		super(graph, fnEdgeCost, new FIFO_VertexQueue());
+		super(graph, fnEdgeCost);
+		frontier = new FIFO_VertexQueue();
 	}
 }

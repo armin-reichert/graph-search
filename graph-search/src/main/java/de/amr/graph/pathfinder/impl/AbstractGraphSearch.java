@@ -46,8 +46,9 @@ public abstract class AbstractGraphSearch<Q extends VertexQueue> implements Obse
 		return new BasicSearchInfo();
 	}
 
-	protected AbstractGraphSearch(Graph<?, ?> graph) {
+	protected AbstractGraphSearch(Graph<?, ?> graph, Q frontier) {
 		this(graph, (u, v) -> 1);
+		this.frontier = frontier;
 	}
 
 	protected AbstractGraphSearch(Graph<?, ?> graph, ToDoubleBiFunction<Integer, Integer> fnEdgeCost) {

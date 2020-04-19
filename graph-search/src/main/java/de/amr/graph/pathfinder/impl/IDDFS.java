@@ -19,7 +19,7 @@ public class IDDFS extends AbstractGraphSearch<LIFO_VertexQueue> {
 	private DepthLimitedDFS dls;
 
 	public IDDFS(Graph<?, ?> graph) {
-		super(graph);
+		super(graph, (LIFO_VertexQueue) null);
 	}
 
 	@Override

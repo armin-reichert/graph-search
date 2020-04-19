@@ -11,28 +11,22 @@ import de.amr.graph.pathfinder.api.Path;
 import de.amr.graph.pathfinder.impl.queue.MinPQ_VertexQueue;
 
 /**
- * The <a href="https://en.wikipedia.org/wiki/A*_search_algorithm">A*</a>
- * pathfinder.
+ * A* search.
  * 
  * <p>
- * Open/closed list and functions f, g, h are realized as follows:
+ * Open/closed list and f, g, h are realized as follows:
  * </p>
  * 
  * <pre>
- * g(v) = getCost(v)
- * h(v) = fnEstimatedCost.apply(v, target)
  * f(v) = g(v) + h(v) = getScore(v)
+ * g(v) = getCost(v)
+ * h(v) = getEstimatedCost(v) = fnEstimatedCost.apply(v, target)
+ * 
  * v in open list:   getState(v) == UNVISITED
  * v in closed list: getState(v) == COMPLETED
  * </pre>
  * 
  * @author Armin Reichert
- * 
- * @see <a href=
- *      "https://en.wikipedia.org/wiki/A*_search_algorithm">Wikipedia</a>
- * @see <a href=
- *      "https://www.redblobgames.com/pathfinding/a-star/introduction.html">Amit
- *      Patel, Red Blob Games</a>
  */
 public class AStarSearch extends AbstractGraphSearch<MinPQ_VertexQueue> {
 

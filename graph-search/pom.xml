@@ -5,7 +5,7 @@
 	</properties>
   <artifactId>graph-search</artifactId>
   <groupId>de.amr.graph</groupId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <description>Graph search algorithms</description>
   <name>graph-search</name>
  	<build>
@@ -24,7 +24,7 @@
   	<dependency>
   		<groupId>de.amr.graph</groupId>
   		<artifactId>graph-core</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
+  		<version>1.0</version>
   	</dependency>
   </dependencies>
 </project>

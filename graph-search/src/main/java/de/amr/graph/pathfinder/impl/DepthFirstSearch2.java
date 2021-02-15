@@ -23,12 +23,12 @@ public class DepthFirstSearch2 extends AbstractGraphSearch<LIFO_VertexQueue> {
 	}
 
 	@Override
-	public Path findPath(int source, int target) {
-		start(source, target);
-		current = source;
+	public Path findPath(int sourceVertex, int targetVertex) {
+		start(sourceVertex, targetVertex);
+		current = sourceVertex;
 		boolean found = false;
 		while (!frontier.isEmpty()) {
-			if (current == target) {
+			if (current == targetVertex) {
 				found = true;
 				break;
 			}
@@ -57,7 +57,7 @@ public class DepthFirstSearch2 extends AbstractGraphSearch<LIFO_VertexQueue> {
 		while (!frontier.isEmpty()) {
 			setState(frontier.poll(), COMPLETED);
 		}
-		return found ? buildPath(target) : Path.NULL;
+		return found ? buildPath(targetVertex) : Path.NULL;
 	}
 
 	private Stream<Integer> unvisitedChildren(int v) {

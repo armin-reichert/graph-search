@@ -23,14 +23,14 @@ public class IDDFS extends AbstractGraphSearch<LIFO_VertexQueue> {
 	}
 
 	@Override
-	public Path findPath(int source, int target) {
+	public Path findPath(int sourceVertex, int targetVertex) {
 		Set<GraphSearchObserver> observersCopy = new HashSet<>(observers);
 		removeAllObservers();
 		for (int depth = 0; depth < graph.numVertices(); ++depth) {
 			dls = new DepthLimitedDFS(graph, depth);
 			observersCopy.forEach(dls::addObserver);
 			vertexInfo.clear();
-			Path path = dls.findPath(source, target);
+			Path path = dls.findPath(sourceVertex, targetVertex);
 			observersCopy.forEach(dls::removeObserver);
 			if (path.numVertices() != 0) {
 				return path;

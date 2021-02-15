@@ -85,10 +85,10 @@ public class BidiGraphSearch<F extends AbstractGraphSearch<?>, B extends Abstrac
 		return false;
 	}
 
-	private void reverseParentLinks(int meetingPoint) {
+	private void reverseParentLinks(int meetingVertex) {
 		List<Integer> backPath = new ArrayList<>();
 		BitSet cycleCheck = new BitSet();
-		for (int v = meetingPoint; v != Graph.NO_VERTEX; v = backwardsSearch.getParent(v)) {
+		for (int v = meetingVertex; v != Graph.NO_VERTEX; v = backwardsSearch.getParent(v)) {
 			backPath.add(v);
 			if (cycleCheck.get(v)) {
 				System.err.println("Path: " + backPath);
@@ -98,7 +98,7 @@ public class BidiGraphSearch<F extends AbstractGraphSearch<?>, B extends Abstrac
 			cycleCheck.set(v);
 		}
 		// recompute cost for backward path
-		backwardsSearch.setCost(meetingPoint, forwardSearch.getCost(meetingPoint));
+		backwardsSearch.setCost(meetingVertex, forwardSearch.getCost(meetingVertex));
 		for (int i = 1; i < backPath.size(); ++i) {
 			backwardsSearch.setParent(backPath.get(i), backPath.get(i - 1));
 			double edgeCost = backwardsSearch.getCost(i - 1) - backwardsSearch.getCost(i);

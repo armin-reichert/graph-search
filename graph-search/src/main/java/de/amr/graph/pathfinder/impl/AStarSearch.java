@@ -64,9 +64,9 @@ public class AStarSearch extends AbstractGraphSearch<MinPQ_VertexQueue> {
 	}
 
 	@Override
-	public void start(int source, int target) {
-		super.start(source, target);
-		setScore(source, getEstimatedCost(source));
+	public void start(int sourceVertex, int targetVertex) {
+		super.start(sourceVertex, targetVertex);
+		setScore(sourceVertex, getEstimatedCost(sourceVertex));
 	}
 
 	@Override

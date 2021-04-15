@@ -14,49 +14,49 @@ import de.amr.graph.pathfinder.api.VertexQueue;
  */
 public class MinPQ_VertexQueue implements VertexQueue {
 
-	private final PriorityQueue<Integer> pq;
+	private final PriorityQueue<Integer> vertexQ;
 
 	public MinPQ_VertexQueue(ToDoubleFunction<Integer> fnVertexPriority) {
-		pq = new PriorityQueue<>(Comparator.comparingDouble(fnVertexPriority));
+		vertexQ = new PriorityQueue<>(Comparator.comparingDouble(fnVertexPriority));
 	}
 
 	public void decreaseKey(int v) {
-		pq.remove(v);
-		pq.add(v);
+		vertexQ.remove(v);
+		vertexQ.add(v);
 	}
 
 	@Override
 	public void add(int v) {
-		pq.offer(v);
+		vertexQ.offer(v);
 	}
 
 	@Override
 	public int poll() {
-		return pq.remove();
+		return vertexQ.remove();
 	}
 
 	@Override
 	public OptionalInt peek() {
-		return pq.isEmpty() ? OptionalInt.empty() : OptionalInt.of(pq.peek());
+		return vertexQ.isEmpty() ? OptionalInt.empty() : OptionalInt.of(vertexQ.peek());
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return pq.isEmpty();
+		return vertexQ.isEmpty();
 	}
 
 	@Override
 	public boolean contains(int v) {
-		return pq.contains(v);
+		return vertexQ.contains(v);
 	}
 
 	@Override
 	public void clear() {
-		pq.clear();
+		vertexQ.clear();
 	}
 
 	@Override
 	public String toString() {
-		return pq.toString();
+		return vertexQ.toString();
 	}
 }

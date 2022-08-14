@@ -43,6 +43,10 @@ public abstract class AbstractGraphSearch<Q extends VertexQueue> implements Obse
 	protected int source;
 	protected int target;
 
+	/**
+	 * @param v vertex
+	 * @return info for vertex
+	 */
 	protected BasicSearchInfo createVertexInfo(int v) {
 		return new BasicSearchInfo();
 	}

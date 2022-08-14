@@ -24,8 +24,8 @@ import de.amr.graph.pathfinder.api.VertexQueue;
 /**
  * Base class for graph search algorithms.
  * <p>
- * Stores the traversal state, parent link and cost for each vertex. Also supports registration of
- * observers for vertex and edge traversals and for changes of the search queue (frontier).
+ * Stores the traversal state, parent link and cost for each vertex. Also supports registration of observers for vertex
+ * and edge traversals and for changes of the search queue (frontier).
  * 
  * @param <Q> type of search queue (FIFO, LIFO, priority queue)
  * 
@@ -39,7 +39,9 @@ public abstract class AbstractGraphSearch<Q extends VertexQueue> implements Obse
 	protected final ToDoubleBiFunction<Integer, Integer> fnEdgeCost;
 	protected double maxCost;
 	protected Q frontier;
-	protected int current, source, target;
+	protected int current;
+	protected int source;
+	protected int target;
 
 	protected BasicSearchInfo createVertexInfo(int v) {
 		return new BasicSearchInfo();

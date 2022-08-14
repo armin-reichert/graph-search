@@ -34,7 +34,7 @@ import de.amr.graph.pathfinder.api.VertexQueue;
 public abstract class AbstractGraphSearch<Q extends VertexQueue> implements ObservableGraphSearch {
 
 	protected final Graph<?, ?> graph;
-	protected final Map<Integer, BasicSearchInfo> vertexInfo;
+	protected final Map<Integer, BasicSearchInfo> vertexInfoMap;
 	protected final Set<GraphSearchObserver> observers;
 	protected final ToDoubleBiFunction<Integer, Integer> fnEdgeCost;
 	protected double maxCost;
@@ -58,13 +58,13 @@ public abstract class AbstractGraphSearch<Q extends VertexQueue> implements Obse
 
 	protected AbstractGraphSearch(Graph<?, ?> graph, ToDoubleBiFunction<Integer, Integer> fnEdgeCost) {
 		this.graph = Objects.requireNonNull(graph);
-		this.vertexInfo = new HashMap<>();
+		this.vertexInfoMap = new HashMap<>();
 		this.observers = new HashSet<>(5);
 		this.fnEdgeCost = fnEdgeCost;
 	}
 
 	protected void clear() {
-		vertexInfo.clear();
+		vertexInfoMap.clear();
 		frontier.clear();
 		maxCost = 0;
 		current = source = target = Graph.NO_VERTEX;
@@ -134,20 +134,20 @@ public abstract class AbstractGraphSearch<Q extends VertexQueue> implements Obse
 	}
 
 	protected BasicSearchInfo getOrCreateVertexInfo(int v) {
-		BasicSearchInfo info = vertexInfo.get(v);
+		BasicSearchInfo info = vertexInfoMap.get(v);
 		if (info == null) {
 			info = createVertexInfo(v);
 			info.parent = Graph.NO_VERTEX;
 			info.state = TraversalState.UNVISITED;
 			info.cost = Path.INFINITE_COST;
-			vertexInfo.put(v, info);
+			vertexInfoMap.put(v, info);
 		}
 		return info;
 	}
 
 	@Override
 	public TraversalState getState(int v) {
-		return vertexInfo.containsKey(v) ? vertexInfo.get(v).state : UNVISITED;
+		return vertexInfoMap.containsKey(v) ? vertexInfoMap.get(v).state : UNVISITED;
 	}
 
 	/**
@@ -165,7 +165,7 @@ public abstract class AbstractGraphSearch<Q extends VertexQueue> implements Obse
 
 	@Override
 	public int getParent(int v) {
-		return vertexInfo.containsKey(v) ? vertexInfo.get(v).parent : Graph.NO_VERTEX;
+		return vertexInfoMap.containsKey(v) ? vertexInfoMap.get(v).parent : Graph.NO_VERTEX;
 	}
 
 	/**
@@ -195,7 +195,7 @@ public abstract class AbstractGraphSearch<Q extends VertexQueue> implements Obse
 
 	@Override
 	public double getCost(int v) {
-		return vertexInfo.containsKey(v) ? vertexInfo.get(v).cost : Path.INFINITE_COST;
+		return vertexInfoMap.containsKey(v) ? vertexInfoMap.get(v).cost : Path.INFINITE_COST;
 	}
 
 	@Override

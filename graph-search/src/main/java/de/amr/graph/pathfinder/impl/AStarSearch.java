@@ -108,10 +108,10 @@ public class AStarSearch extends AbstractGraphSearch<MinPQ_VertexQueue> {
 	 * @return the score ("f"-value) of the vertex
 	 */
 	public double getScore(int v) {
-		if (!vertexInfo.containsKey(v)) {
+		if (!vertexInfoMap.containsKey(v)) {
 			return Path.INFINITE_COST;
 		}
-		return ((AStarSearchInfo) vertexInfo.get(v)).score;
+		return ((AStarSearchInfo) vertexInfoMap.get(v)).score;
 	}
 
 	/**

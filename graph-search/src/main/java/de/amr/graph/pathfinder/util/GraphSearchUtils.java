@@ -5,7 +5,7 @@ import de.amr.graph.core.api.TraversalState;
 import de.amr.graph.pathfinder.api.Path;
 import de.amr.graph.pathfinder.impl.BreadthFirstSearch;
 
-public class GraphSearchUtils {
+public interface GraphSearchUtils {
 
 	/**
 	 * Checks if the given cells are connected by some path.

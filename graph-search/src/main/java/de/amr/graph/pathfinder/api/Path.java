@@ -5,14 +5,12 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
  * <p>
- * A path in a graph. This is an immutable object. Paths are constructed from unit paths and edges
- * by concatenation.
+ * A path in a graph. This is an immutable object. Paths are constructed from unit paths and edges by concatenation.
  * </p>
  * 
  * @author Armin Reichert
@@ -55,23 +53,19 @@ public class Path implements Iterable<Integer> {
 	/**
 	 * Creates the unit path for the given vertex.
 	 * 
-	 * @param v
-	 *            a vertex
-	 * @return the path consisting of the vertex alone without edges. This is a unit wrt to the path
-	 *         concatenation.
+	 * @param v a vertex
+	 * @return the path consisting of the vertex alone without edges. This is a unit wrt to the path concatenation.
 	 */
 	public static Path unit(int v) {
 		return new Path(Collections.singletonList(v));
 	}
 
 	/**
-	 * Creates the elementary path consisting of the single edge from u to v. If such an edge exists in
-	 * the underlying graph is the responsibility of the caller.
+	 * Creates the elementary path consisting of the single edge from u to v. If such an edge exists in the underlying
+	 * graph is the responsibility of the caller.
 	 * 
-	 * @param u
-	 *            either vertex of the edge
-	 * @param v
-	 *            other vertex of the edge
+	 * @param u either vertex of the edge
+	 * @param v other vertex of the edge
 	 * @return path consisting of thus edge
 	 */
 	public static Path edge(int u, int v) {
@@ -134,11 +128,9 @@ public class Path implements Iterable<Integer> {
 	}
 
 	/**
-	 * Appends the given path to this path. The source of <code>p</code> must equals the target of this
-	 * path.
+	 * Appends the given path to this path. The source of <code>p</code> must equals the target of this path.
 	 * 
-	 * @param p
-	 *            path to append
+	 * @param p path to append
 	 * @return concatenation of this path with the given path
 	 */
 	public Path concat(Path p) {
@@ -175,11 +167,10 @@ public class Path implements Iterable<Integer> {
 	/**
 	 * Checks if this path contains exactly the given vertices.
 	 * 
-	 * @param vertexSeq
-	 *                    sequence of vertices
+	 * @param vertexSeq sequence of vertices
 	 * @return if this path contains exactly the given vertices
 	 */
 	public boolean is(int... vertexSeq) {
-		return vertices.equals(IntStream.of(vertexSeq).boxed().collect(Collectors.toList()));
+		return vertices.equals(IntStream.of(vertexSeq).boxed().toList());
 	}
 }

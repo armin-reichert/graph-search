@@ -35,7 +35,7 @@ public class AStarSearch extends AbstractGraphSearch<MinPQ_VertexQueue> {
 
 		@Override
 		public String toString() {
-			return String.format("(parent:%d,state:%s,cost:%.2g,score:%.2g)", parent, state, cost, score);
+			return String.format("[parent: %d, state:%s,cost: %.2f, score: %.2f]", parent, state, cost, score);
 		}
 	}
 
@@ -50,11 +50,9 @@ public class AStarSearch extends AbstractGraphSearch<MinPQ_VertexQueue> {
 	 * Creates an A* path finder instance.
 	 * 
 	 * @param graph           the graph to be searched
-	 * @param fnEdgeCost      edge cost function e.g. street length between two
-	 *                        cities
-	 * @param fnEstimatedCost estimated path cost e.g. Euclidean distance between
-	 *                        two cities. This must be an <b>underestimate</b> of
-	 *                        the real cost.
+	 * @param fnEdgeCost      edge cost function e.g. street length between two cities
+	 * @param fnEstimatedCost estimated path cost e.g. Euclidean distance between two cities. This must be an
+	 *                        <b>underestimate</b> of the real cost.
 	 */
 	public AStarSearch(Graph<?, ?> graph, ToDoubleBiFunction<Integer, Integer> fnEdgeCost,
 			ToDoubleBiFunction<Integer, Integer> fnEstimatedCost) {
@@ -101,8 +99,7 @@ public class AStarSearch extends AbstractGraphSearch<MinPQ_VertexQueue> {
 	}
 
 	/**
-	 * Returns the score of the given vertex which determines its priority in the
-	 * frontier.
+	 * Returns the score of the given vertex which determines its priority in the frontier.
 	 * 
 	 * @param v vertex
 	 * @return the score ("f"-value) of the vertex

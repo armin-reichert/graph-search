@@ -15,6 +15,6 @@ public class BasicSearchInfo {
 
 	@Override
 	public String toString() {
-		return String.format("(parent:%d,state:%s,cost:%.2g)", parent, state, cost);
+		return String.format("[parent: %d, state: %s, cost: %.2f]", parent, state, cost);
 	}
 }

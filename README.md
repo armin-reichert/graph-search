@@ -2,7 +2,7 @@
 
 The library contains several graph search (path finder) implementations (BFS, DFS, Hill-Climbing, Best-First Search, A*, Dijkstra).
 
-![Path Finder Demo](https://github.com/armin-reichert/graph-search/doc/demoapp.png "Path Finding Demo")
+![Path Finder Demo](https://github.com/armin-reichert/graph-search/blob/master/graph-search/doc/demoapp.png "Path Finding Demo")
 
 
 I tried to achieve "text book quality" in the code. See for example the following implementations:

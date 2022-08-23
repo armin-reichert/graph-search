@@ -9,17 +9,18 @@ import java.util.stream.Stream;
 
 import de.amr.graph.core.api.Graph;
 import de.amr.graph.pathfinder.api.Path;
-import de.amr.graph.pathfinder.impl.queue.LIFO_VertexQueue;
+import de.amr.graph.pathfinder.impl.queue.LIFOVertexQueue;
 
 /**
  * Alternative implementation of depth-first traversal of an undirected graph.
  * 
  * @author Armin Reichert
  */
-public class DepthFirstSearch2 extends AbstractGraphSearch<LIFO_VertexQueue> {
+public class DepthFirstSearch2 extends AbstractGraphSearch<LIFOVertexQueue> {
 
 	public DepthFirstSearch2(Graph<?, ?> graph) {
-		super(graph, new LIFO_VertexQueue());
+		super(graph);
+		frontier = new LIFOVertexQueue();
 	}
 
 	@Override

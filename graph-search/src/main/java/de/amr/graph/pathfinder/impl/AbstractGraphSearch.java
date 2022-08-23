@@ -39,33 +39,22 @@ public abstract class AbstractGraphSearch<Q extends VertexQueue> implements Obse
 	private static final Logger LOGGER = LogManager.getFormatterLogger();
 
 	protected final Graph<?, ?> graph;
-	protected final Map<Integer, BasicSearchInfo> vertexInfoMap;
-	protected final Set<GraphSearchObserver> observers;
-	protected final ToDoubleBiFunction<Integer, Integer> fnEdgeCost;
+	protected final Map<Integer, BasicSearchInfo> vertexInfoMap = new HashMap<>();
+	protected final Set<GraphSearchObserver> observers = new HashSet<>(5);
+
+	protected ToDoubleBiFunction<Integer, Integer> fnEdgeCost = (u, v) -> 1.0;
 	protected double maxCost;
 	protected Q frontier;
 	protected int current;
 	protected int source;
 	protected int target;
 
-	/**
-	 * @param v vertex
-	 * @return info for vertex
-	 */
+	protected AbstractGraphSearch(Graph<?, ?> graph) {
+		this.graph = Objects.requireNonNull(graph);
+	}
+
 	protected BasicSearchInfo createVertexInfo(int v) {
 		return new BasicSearchInfo();
-	}
-
-	protected AbstractGraphSearch(Graph<?, ?> graph, Q frontier) {
-		this(graph, (u, v) -> 1);
-		this.frontier = frontier;
-	}
-
-	protected AbstractGraphSearch(Graph<?, ?> graph, ToDoubleBiFunction<Integer, Integer> fnEdgeCost) {
-		this.graph = Objects.requireNonNull(graph);
-		this.vertexInfoMap = new HashMap<>();
-		this.observers = new HashSet<>(5);
-		this.fnEdgeCost = fnEdgeCost;
 	}
 
 	protected void clear() {

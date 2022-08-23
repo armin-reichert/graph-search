@@ -6,46 +6,46 @@ import java.util.OptionalInt;
 import de.amr.graph.pathfinder.api.VertexQueue;
 
 /**
- * FIFO vertex queue.
+ * Stack of vertices.
  * 
  * @author Armin Reichert
  */
-public class FIFO_VertexQueue implements VertexQueue {
+public class LIFOVertexQueue implements VertexQueue {
 
-	private final ArrayDeque<Integer> q = new ArrayDeque<>();
+	private final ArrayDeque<Integer> stack = new ArrayDeque<>();
 
 	@Override
 	public void add(int v) {
-		q.add(v);
+		stack.push(v);
 	}
 
 	@Override
 	public int poll() {
-		return q.remove();
+		return stack.pop();
 	}
 
 	@Override
 	public OptionalInt peek() {
-		return q.isEmpty() ? OptionalInt.empty() : OptionalInt.of(q.peek());
+		return stack.isEmpty() ? OptionalInt.empty() : OptionalInt.of(stack.peek());
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return q.isEmpty();
+		return stack.isEmpty();
 	}
 
 	@Override
 	public boolean contains(int v) {
-		return q.contains(v);
+		return stack.contains(v);
 	}
 
 	@Override
 	public void clear() {
-		q.clear();
+		stack.clear();
 	}
 
 	@Override
 	public String toString() {
-		return q.toString();
+		return stack.toString();
 	}
 }

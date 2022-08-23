@@ -12,11 +12,11 @@ import de.amr.graph.pathfinder.api.VertexQueue;
  * 
  * @author Armin Reichert
  */
-public class MinPQ_VertexQueue implements VertexQueue {
+public class MinPQVertexQueue implements VertexQueue {
 
 	private final PriorityQueue<Integer> vertexQ;
 
-	public MinPQ_VertexQueue(ToDoubleFunction<Integer> fnVertexPriority) {
+	public MinPQVertexQueue(ToDoubleFunction<Integer> fnVertexPriority) {
 		vertexQ = new PriorityQueue<>(Comparator.comparingDouble(fnVertexPriority));
 	}
 

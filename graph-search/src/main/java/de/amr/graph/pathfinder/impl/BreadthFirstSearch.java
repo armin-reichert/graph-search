@@ -1,23 +1,25 @@
 package de.amr.graph.pathfinder.impl;
 
+import java.util.Objects;
 import java.util.function.ToDoubleBiFunction;
 
 import de.amr.graph.core.api.Graph;
-import de.amr.graph.pathfinder.impl.queue.FIFO_VertexQueue;
+import de.amr.graph.pathfinder.impl.queue.FIFOVertexQueue;
 
 /**
  * Breadth-first graph search.
  * 
  * @author Armin Reichert
  */
-public class BreadthFirstSearch extends AbstractGraphSearch<FIFO_VertexQueue> {
+public class BreadthFirstSearch extends AbstractGraphSearch<FIFOVertexQueue> {
 
 	public BreadthFirstSearch(Graph<?, ?> graph) {
 		this(graph, (u, v) -> 1);
 	}
 
 	public BreadthFirstSearch(Graph<?, ?> graph, ToDoubleBiFunction<Integer, Integer> fnEdgeCost) {
-		super(graph, fnEdgeCost);
-		frontier = new FIFO_VertexQueue();
+		super(graph);
+		this.frontier = new FIFOVertexQueue();
+		this.fnEdgeCost = Objects.requireNonNull(fnEdgeCost);
 	}
 }

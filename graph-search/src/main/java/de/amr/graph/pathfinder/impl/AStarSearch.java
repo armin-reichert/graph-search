@@ -8,7 +8,7 @@ import java.util.function.ToDoubleBiFunction;
 
 import de.amr.graph.core.api.Graph;
 import de.amr.graph.pathfinder.api.Path;
-import de.amr.graph.pathfinder.impl.queue.MinPQ_VertexQueue;
+import de.amr.graph.pathfinder.impl.queue.MinPQVertexQueue;
 
 /**
  * A* search.
@@ -28,7 +28,7 @@ import de.amr.graph.pathfinder.impl.queue.MinPQ_VertexQueue;
  * 
  * @author Armin Reichert
  */
-public class AStarSearch extends AbstractGraphSearch<MinPQ_VertexQueue> {
+public class AStarSearch extends AbstractGraphSearch<MinPQVertexQueue> {
 
 	static class AStarSearchInfo extends BasicSearchInfo {
 		public double score;
@@ -56,9 +56,10 @@ public class AStarSearch extends AbstractGraphSearch<MinPQ_VertexQueue> {
 	 */
 	public AStarSearch(Graph<?, ?> graph, ToDoubleBiFunction<Integer, Integer> fnEdgeCost,
 			ToDoubleBiFunction<Integer, Integer> fnEstimatedCost) {
-		super(graph, fnEdgeCost);
+		super(graph);
+		this.frontier = new MinPQVertexQueue(this::getScore);
+		this.fnEdgeCost = fnEdgeCost;
 		this.fnEstimatedCost = fnEstimatedCost;
-		this.frontier = new MinPQ_VertexQueue(this::getScore);
 	}
 
 	@Override

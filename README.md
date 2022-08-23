@@ -10,7 +10,7 @@ I tried to achieve "text book quality" in the code. See for example the followin
 ### Depth-First Search:
 
 ```java
-public class DepthFirstSearch extends AbstractGraphSearch<LIFOVertexQueue> {
+public class DepthFirstSearch extends AbstractGraphSearch {
 
 	public DepthFirstSearch(Graph<?, ?> graph) {
 		super(graph);
@@ -22,7 +22,7 @@ public class DepthFirstSearch extends AbstractGraphSearch<LIFOVertexQueue> {
 ### Breadth-First Search:
 
 ```java
-public class BreadthFirstSearch extends AbstractGraphSearch<FIFOVertexQueue> {
+public class BreadthFirstSearch extends AbstractGraphSearch {
 
 	public BreadthFirstSearch(Graph<?, ?> graph) {
 		this(graph, (u, v) -> 1);

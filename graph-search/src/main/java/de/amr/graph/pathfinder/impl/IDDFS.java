@@ -7,14 +7,13 @@ import de.amr.graph.core.api.Graph;
 import de.amr.graph.core.api.TraversalState;
 import de.amr.graph.pathfinder.api.GraphSearchObserver;
 import de.amr.graph.pathfinder.api.Path;
-import de.amr.graph.pathfinder.impl.queue.LIFOVertexQueue;
 
 /**
  * Iterative deepening depth-first search (IDDFS).
  * 
  * @author Armin Reichert
  */
-public class IDDFS extends AbstractGraphSearch<LIFOVertexQueue> {
+public class IDDFS extends AbstractGraphSearch {
 
 	private DepthLimitedDFS dls;
 

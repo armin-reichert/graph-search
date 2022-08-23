@@ -11,7 +11,7 @@ import de.amr.graph.pathfinder.impl.queue.FIFOVertexQueue;
  * 
  * @author Armin Reichert
  */
-public class BreadthFirstSearch extends AbstractGraphSearch<FIFOVertexQueue> {
+public class BreadthFirstSearch extends AbstractGraphSearch {
 
 	public BreadthFirstSearch(Graph<?, ?> graph) {
 		this(graph, (u, v) -> 1);

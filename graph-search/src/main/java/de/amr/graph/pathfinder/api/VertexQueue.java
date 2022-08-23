@@ -12,8 +12,7 @@ public interface VertexQueue {
 	/**
 	 * Adds the given vertex to this queue.
 	 * 
-	 * @param vertex
-	 *                 vertex
+	 * @param vertex vertex
 	 */
 	void add(int vertex);
 
@@ -41,8 +40,7 @@ public interface VertexQueue {
 	/**
 	 * Tells if the given vertex is part of the queue.
 	 * 
-	 * @param vertex
-	 *                 vertex
+	 * @param vertex vertex
 	 * @return <code>true</code> if the vertex is contained in the queue
 	 */
 	boolean contains(int vertex);
@@ -51,4 +49,12 @@ public interface VertexQueue {
 	 * Removes all vertices from the queue.
 	 */
 	void clear();
+
+	/**
+	 * Used in AStar/Dijkstra algorithm. Decreases the key of this vertex in the priority queue representing the frontier.
+	 * 
+	 * @param vertex
+	 */
+	default void decreaseKey(Integer vertex) {
+	}
 }

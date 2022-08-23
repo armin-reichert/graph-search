@@ -34,7 +34,7 @@ import de.amr.graph.pathfinder.api.VertexQueue;
  * 
  * @author Armin Reichert
  */
-public abstract class AbstractGraphSearch<Q extends VertexQueue> implements ObservableGraphSearch {
+public abstract class AbstractGraphSearch implements ObservableGraphSearch {
 
 	private static final Logger LOGGER = LogManager.getFormatterLogger();
 
@@ -44,7 +44,7 @@ public abstract class AbstractGraphSearch<Q extends VertexQueue> implements Obse
 
 	protected ToDoubleBiFunction<Integer, Integer> fnEdgeCost = (u, v) -> 1.0;
 	protected double maxCost;
-	protected Q frontier;
+	protected VertexQueue frontier;
 	protected int current;
 	protected int source;
 	protected int target;

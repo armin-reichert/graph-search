@@ -28,7 +28,7 @@ import de.amr.graph.pathfinder.impl.queue.MinPQVertexQueue;
  * 
  * @author Armin Reichert
  */
-public class AStarSearch extends AbstractGraphSearch<MinPQVertexQueue> {
+public class AStarSearch extends AbstractGraphSearch {
 
 	static class AStarSearchInfo extends BasicSearchInfo {
 		public double score;

@@ -40,7 +40,7 @@ public class AStarSearch extends AbstractGraphSearch {
 	}
 
 	@Override
-	protected BasicSearchInfo createVertexInfo(int v) {
+	protected AStarSearchInfo createVertexInfo(int v) {
 		return new AStarSearchInfo();
 	}
 
@@ -65,37 +65,37 @@ public class AStarSearch extends AbstractGraphSearch {
 	@Override
 	public void start(int sourceVertex, int targetVertex) {
 		super.start(sourceVertex, targetVertex);
-		setScore(sourceVertex, getEstimatedCost(sourceVertex));
+		setScore(sourceVertex, getEstimatedCostToTarget(sourceVertex));
 	}
 
 	@Override
 	protected void expand(int v) {
-		graph.adj(v).filter(child -> getState(child) != COMPLETED).forEach(child -> {
-			double tentativeCost = getCost(v) + fnEdgeCost.applyAsDouble(v, child);
-			if (getState(child) == UNVISITED || tentativeCost < getCost(child)) {
-				setParent(child, v);
-				setCost(child, tentativeCost);
-				setScore(child, tentativeCost + getEstimatedCost(child));
-				if (getState(child) == UNVISITED) {
-					// found first path to the child
-					setState(child, VISITED);
-					frontier.add(child);
-					fireVertexAddedToFrontier(child);
+		graph.adj(v).filter(child -> getState(child) != COMPLETED).forEach(neighbor -> {
+			double tentativeCost = getCost(v) + fnEdgeCost.applyAsDouble(v, neighbor);
+			if (getState(neighbor) == UNVISITED || tentativeCost < getCost(neighbor)) {
+				setParent(neighbor, v);
+				setCost(neighbor, tentativeCost);
+				setScore(neighbor, tentativeCost + getEstimatedCostToTarget(neighbor));
+				if (getState(neighbor) == UNVISITED) {
+					// found first path
+					setState(neighbor, VISITED);
+					frontier.add(neighbor);
+					fireVertexAddedToFrontier(neighbor);
 				} else {
-					// found better path to the child
-					frontier.decreaseKey(child);
+					// found better path
+					frontier.decreaseKey(neighbor);
 				}
 			}
 		});
 	}
 
 	/**
-	 * Returns the estimated ("heuristic") cost of the given vertex.
+	 * Returns the estimated ("heuristic") cost of the given vertex (distance to target).
 	 * 
 	 * @param v vertex
 	 * @return the estimated cost ("h"-value) of the vertex
 	 */
-	public double getEstimatedCost(int v) {
+	public double getEstimatedCostToTarget(int v) {
 		return fnEstimatedCost.applyAsDouble(v, target);
 	}
 

@@ -32,7 +32,7 @@ public class BidiAStarSearch extends BidiGraphSearch<AStarSearch, AStarSearch> {
 	}
 
 	public double getEstimatedCost(int v) {
-		return getForwardSearch().getState(v) != TraversalState.UNVISITED ? getForwardSearch().getEstimatedCost(v)
-				: getBackwardsSearch().getEstimatedCost(v);
+		return getForwardSearch().getState(v) != TraversalState.UNVISITED ? getForwardSearch().getEstimatedCostToTarget(v)
+				: getBackwardsSearch().getEstimatedCostToTarget(v);
 	}
 }

@@ -26,7 +26,10 @@ public class FIFOVertexQueue implements VertexQueue {
 
 	@Override
 	public OptionalInt peek() {
-		return q.isEmpty() ? OptionalInt.empty() : OptionalInt.of(q.peek());
+		if (q.isEmpty()) {
+			return OptionalInt.empty();
+		}
+		return q.peek() != null ? OptionalInt.of(q.peek()) : OptionalInt.empty();
 	}
 
 	@Override

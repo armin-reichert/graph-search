@@ -14,15 +14,13 @@ import java.util.OptionalInt;
 import java.util.Set;
 import java.util.function.ToDoubleBiFunction;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import de.amr.graph.core.api.Graph;
 import de.amr.graph.core.api.TraversalState;
 import de.amr.graph.pathfinder.api.GraphSearchObserver;
 import de.amr.graph.pathfinder.api.ObservableGraphSearch;
 import de.amr.graph.pathfinder.api.Path;
 import de.amr.graph.pathfinder.api.VertexQueue;
+import org.tinylog.Logger;
 
 /**
  * Base class for graph search algorithms.
@@ -33,8 +31,6 @@ import de.amr.graph.pathfinder.api.VertexQueue;
  * @author Armin Reichert
  */
 public abstract class AbstractGraphSearch implements ObservableGraphSearch {
-
-	private static final Logger LOGGER = LogManager.getFormatterLogger();
 
 	protected final Graph<?, ?> graph;
 	protected final Map<Integer, BasicSearchInfo> vertexInfoMap = new HashMap<>();
@@ -71,7 +67,8 @@ public abstract class AbstractGraphSearch implements ObservableGraphSearch {
 	public boolean exploreVertex() {
 		current = frontier.poll();
 		setState(current, COMPLETED);
-		LOGGER.trace("%s: Explore vertex %d. %s", getClass().getSimpleName(), current, getOrCreateVertexInfo(current));
+
+		Logger.trace("%s: Explore vertex %d. %s", getClass().getSimpleName(), current, getOrCreateVertexInfo(current));
 		fireVertexRemovedFromFrontier(current);
 		if (current == target) {
 			return true;
@@ -89,7 +86,7 @@ public abstract class AbstractGraphSearch implements ObservableGraphSearch {
 		setState(source, VISITED);
 		setParent(source, Graph.NO_VERTEX);
 		setCost(source, 0);
-		LOGGER.trace("%s: Start search at vertex %d. %s", getClass().getSimpleName(), current,
+		Logger.trace("%s: Start search at vertex %d. %s", getClass().getSimpleName(), current,
 				getOrCreateVertexInfo(current));
 		fireVertexAddedToFrontier(source);
 	}
@@ -100,7 +97,7 @@ public abstract class AbstractGraphSearch implements ObservableGraphSearch {
 	 * @param v vertex to be expanded
 	 */
 	protected void expand(int v) {
-		LOGGER.trace("%s: Expand vertex %d. %s", getClass().getSimpleName(), v, getOrCreateVertexInfo(v));
+		Logger.trace("%s: Expand vertex %d. %s", getClass().getSimpleName(), v, getOrCreateVertexInfo(v));
 		graph.adj(v).filter(child -> getState(child) == UNVISITED).forEach(child -> {
 			setState(child, VISITED);
 			setParent(child, v);

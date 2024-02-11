@@ -30,8 +30,6 @@ import de.amr.graph.pathfinder.api.VertexQueue;
  * Stores the traversal state, parent link and cost for each vertex. Also supports registration of observers for vertex
  * and edge traversals and for changes of the search queue (frontier).
  * 
- * @param <Q> type of search queue (FIFO, LIFO, priority queue)
- * 
  * @author Armin Reichert
  */
 public abstract class AbstractGraphSearch implements ObservableGraphSearch {
